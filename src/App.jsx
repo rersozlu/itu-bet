@@ -58,7 +58,7 @@ function App() {
         </div>
         <div className="candidate">
           <img src="/imgs/caner.png" alt="caner" />
-          <label htmlFor="caner">ZAFER BUDAK</label>
+          <label htmlFor="caner">ZAFER GURAY GUNDUZ</label>
           <input
             onClick={(e) => setChoice(e.target.id)}
             type="radio"
