@@ -1,13 +1,98 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: "Indie Flower", cursive;
+  background-color: rgb(240, 222, 204);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.App {
+  max-width: 1000px;
+  max-height: 100vh;
+  margin: 0 auto;
+}
+form {
+  display: flex;
+  max-width: 800px;
+  margin: 20px auto;
+  justify-content: space-between;
+}
+img {
+  max-width: 50%;
+}
+
+.header {
+  text-align: center;
+  font-size: 3em;
+}
+
+.candidate {
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+.candidate > input {
+  height: 25px;
+  width: 25px;
+  background-color: rgb(240, 222, 204);
+  border-radius: 50%;
+}
+.input-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+input {
+  margin: 10px auto;
+  padding: 1em 1em;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(73, 44, 14);
+  color: beige;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #603813 0%,
+    #b29f94 51%,
+    #603813 100%
+  );
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  font-size: 22px;
+}
+
+.btn-grad:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
 }
