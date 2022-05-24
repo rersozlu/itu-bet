@@ -179,7 +179,7 @@
   },
   {
     "inputs": [],
-    "name": "rug",
+    "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

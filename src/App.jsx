@@ -6,16 +6,16 @@ function App() {
   const [account, setAccount] = useState("");
   const [signer, setSigner] = useState({});
   const [contract, setContract] = useState({});
-  const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0.1);
 
-  const contractAddress = "0xC1b979F8Ac54C9aFfBb4a342D58c462D8225392c";
+  const contractAddress = "0x1A523b07C5BbDdD1a240895DD8E780c326073495";
   async function connectWallet() {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         await window.ethereum.request({
           method: "wallet_switchEthereumChain",
-          params: [{ chainId: "0xA869" }],
+          params: [{ chainId: "0xA86A" }],
         });
         const accounts = await provider.send("eth_requestAccounts", []);
         const signer = await provider.getSigner();
@@ -73,9 +73,10 @@ function App() {
           type="number"
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
+          min="0.1"
         />
         <button onClick={async () => await betHandler()} className="btn-grad">
-          BET!
+          BET! 💩
         </button>
       </div>
     </div>
