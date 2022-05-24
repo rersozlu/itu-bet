@@ -7,6 +7,10 @@ function App() {
   const [signer, setSigner] = useState({});
   const [contract, setContract] = useState({});
   const [amount, setAmount] = useState(0.1);
+  const [alimBet, setAlimBet] = useState(0);
+  const [refresher, setRefresher] = useState(0);
+  const [zaferBet, setZaferBet] = useState(0);
+  const [totalBet, setTotalBet] = useState(0);
 
   const contractAddress = "0x1A523b07C5BbDdD1a240895DD8E780c326073495";
   async function connectWallet() {
@@ -30,16 +34,44 @@ function App() {
   }
 
   async function betHandler() {
-    if (account && amount && choice && amount >= 0.1) {
+    if (account && choice && amount >= 0.1) {
       const avaxAmount = ethers.utils.parseEther(amount.toString());
       const txn = await contract.bet(choice, { value: avaxAmount });
       await txn.wait();
+      setRefresher((prev) => prev + 1);
+    }
+  }
+
+  async function betClaimer() {
+    const txn = await contract.claim();
+    await txn.wait();
+    setRefresher((prev) => prev + 1);
+  }
+
+  async function checkBets() {
+    if (account) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const viewContract = new ethers.Contract(contractAddress, abi, provider);
+      const aalimBet = await viewContract.bets(account, "0");
+      const alimEther = ethers.utils.formatEther(aalimBet);
+      await setAlimBet(alimEther);
+      const zzaferBet = await viewContract.bets(account, "1");
+      const zaferEther = ethers.utils.formatEther(zzaferBet);
+      await setZaferBet(zaferEther);
+      const ttotalBet = await viewContract.balance();
+      const totalEther = ethers.utils.formatEther(ttotalBet);
+      await setTotalBet(totalEther);
     }
   }
 
   useEffect(() => {
-    connectWallet();
-  }, []);
+    async function effectFunc() {
+      await connectWallet();
+      await setRefresher(10);
+      await checkBets();
+    }
+    effectFunc();
+  }, [refresher]);
   return (
     <div className="App">
       <h1 className="header">BET FOR THE ITU BLOCKCHAIN ELECTIONS</h1>
@@ -75,9 +107,23 @@ function App() {
           onChange={(e) => setAmount(e.target.value)}
           min="0.1"
         />
-        <button onClick={async () => await betHandler()} className="btn-grad">
-          BET! 💩
-        </button>
+        <div className="buttons">
+          <button onClick={async () => await betHandler()} className="btn-grad">
+            BET! 💩
+          </button>
+          <button
+            onClick={() => alert("Election is not complete yet!")}
+            className="btn-grad"
+          >
+            CLAIM
+          </button>
+        </div>
+      </div>
+      <div className="info">
+        <p>Your Bets:</p>
+        <p>Alim Şahin: {alimBet}</p>
+        <p>Zafer Güray Gündüz: {zaferBet}</p>
+        <p>Total Bets in the contract: {totalBet}</p>
       </div>
     </div>
   );

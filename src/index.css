@@ -59,6 +59,7 @@ label {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: sans-serif;
 }
 
 input {
@@ -88,6 +89,7 @@ input {
   border-radius: 10px;
   display: block;
   font-size: 22px;
+  margin-right: 7px;
 }
 
 .btn-grad:hover {
@@ -95,4 +97,20 @@ input {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
+}
+.info {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  margin-top: 15px;
+}
+.info > p {
+  margin: 7px 0;
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
 }
