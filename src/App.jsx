@@ -111,10 +111,7 @@ function App() {
           <button onClick={async () => await betHandler()} className="btn-grad">
             BET! 💩
           </button>
-          <button
-            onClick={() => alert("Election is not complete yet!")}
-            className="btn-grad"
-          >
+          <button onClick={async () => await betClaimer()} className="btn-grad">
             CLAIM
           </button>
         </div>
